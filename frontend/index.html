@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Institute Hostel Management System</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo"><img src="image/logo.png">National Institute of Technology Sikkim</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="login.html" class="btn">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="slideshow" id="home">
+    <div class="slides fade">
+      <img src="image/nit1.jpg" alt="Campus 1">
+    </div>
+    <div class="slides fade">
+      <img src="image/nit2.jpg" alt="Campus 2">
+    </div>
+    <div class="slides fade">
+      <img src="image/a69.jpg" alt="Campus 3">
+    </div>
+
+    <div class="hero-text">
+      <h1>Welcome to Online Institute Hostel Management System</h1>
+      <p>Efficient, Transparent, and Student-Friendly Hostel Management</p>
+      <a href="#features" class="cta-btn">Explore Features</a>
+    </div>
+  </section>
+
+
+  <section class="features" id="features">
+    <div class="feature-grid">
+      <div class="card">
+        <h3><i class="fas fa-user-graduate"></i> Student Portal</h3>
+        <p>Apply for rooms, pay fees, check notices, and track attendance.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-clipboard-user"></i> Warden Dashboard</h3>
+        <p>Approve applications, allocate rooms, handle complaints, and post notices.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-user-shield"></i> Admin Panel</h3>
+        <p>Manage hostels, staff, rooms, mess, and overall system.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fas fa-utensils"></i> Mess & Visitors</h3>
+        <p>Track mess subscriptions and manage visitor records easily.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2>About Our Hostel Management System (HMS)</h2>
+    <div class="about-content">
+        <p class="project-goal">
+            The **Online Institute Hostel Management System (HMS)** is a comprehensive web-based solution designed for the National Institute of Technology Sikkim. Its primary goal is to **digitalize all administrative and residential functions** associated with hostel management, moving away from manual, paper-based processes.
+        </p>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h4>Problem Solved: Efficiency & Accuracy</h4>
+                <p>The system addresses key challenges faced in traditional management, including manual errors in fee calculation, delayed room allotment processes, and the lack of real-time occupancy data.</p>
+            </div>
+            <div class="benefit-card">
+                <h4>Core Benefit: Centralized Portal</h4>
+                <p>Students gain a single, transparent portal for checking fee dues, submitting complaints, tracking visitors, and receiving official hostel notices instantly.</p>
+            </div>
+            <div class="benefit-card">
+                <h4>Core Benefit: Administration Control</h4>
+                <p>Administration and Wardens gain centralized control over all hostel inventory, instant reporting on finances and occupancy, and streamlined workflows for complaint resolution.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Institute Hostel Management System. All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/nitsikkimofficial" target="_blank" class="facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/nitsikkim_official" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/nitsikkim" target="_blank" class="x"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.youtube.com/channel/UC7Glq4E-nC3lsQd1rwR2w0Q" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("slides");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}
+      slides[slideIndex-1].style.display = "block";
+      setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+  </script>
+</body>
+</html>

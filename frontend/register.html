@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Registration - Online Hostel Management</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 700px; /* Increased max width to accommodate the grid better */
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #555;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="tel"],
+    input[type="password"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.8px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: border-color 0.3s ease;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 5px #667eea;
+    }
+
+    textarea {
+      min-height: 60px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Full width for address textarea and button/link */
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    button {
+      grid-column: 1 / -1;
+      padding: 14px 0;
+      background: #667eea;
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #5a67d8;
+    }
+
+    /* Link to login page styling */
+    .login-link {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 0.95em;
+    }
+    .login-link a {
+        color: #667eea;
+        font-weight: 600;
+    }
+
+    /* Responsive on small screens */
+    @media (max-width: 650px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      .full-width {
+        grid-column: 1;
+      }
+    }
+
+    .error-msg {
+      color: #d93025;
+      font-size: 13px;
+      margin-top: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Student Registration</h2>
+    <form id="studentRegForm" novalidate>
+      
+      <div>
+        <label for="rollNumber">Roll Number *</label>
+        <input type="text" id="rollNumber" name="rollNumber" placeholder="Institute Roll No. (Username)" required />
+        <div class="error-msg" id="error-rollNumber"></div>
+      </div>
+      
+      <div>
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" placeholder="Enter full name" required />
+        <div class="error-msg" id="error-name"></div>
+      </div>
+
+      <div>
+        <label for="dob">Date of Birth *</label>
+        <input type="date" id="dob" name="dob" required />
+        <div class="error-msg" id="error-dob"></div>
+      </div>
+
+      <div>
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" placeholder="example@mail.com" required />
+        <div class="error-msg" id="error-email"></div>
+      </div>
+
+      <div>
+        <label for="branch">Branch *</label>
+        <select id="branch" name="branch" required>
+          <option value="" disabled selected>Select branch</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Mechanical">Mechanical</option>
+          <option value="Electrical">Electrical</option>
+          <option value="Civil">Civil</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Chemical">Chemical</option>
+          <option value="Other">Other</option>
+        </select>
+        <div class="error-msg" id="error-branch"></div>
+      </div>
+
+      <div>
+        <label for="year">Year *</label>
+        <select id="year" name="year" required>
+          <option value="" disabled selected>Select year</option>
+          <option value="1st Year">1st Year</option>
+          <option value="2nd Year">2nd Year</option>
+          <option value="3rd Year">3rd Year</option>
+          <option value="4th Year">4th Year</option>
+          <option value="Other">Other</option>
+        </select>
+        <div class="error-msg" id="error-year"></div>
+      </div>
+
+      <div>
+        <label for="gender">Gender *</label>
+        <select id="gender" name="gender" required>
+          <option value="" disabled selected>Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+          <option value="Prefer not to say">Prefer not to say</option>
+        </select>
+        <div class="error-msg" id="error-gender"></div>
+      </div>
+
+      <div>
+        <label for="contact">Contact Number *</label>
+        <input type="tel" id="contact" name="contact" placeholder="10-digit number" pattern="[0-9]{10}" required />
+        <div class="error-msg" id="error-contact"></div>
+      </div>
+      
+      <div>
+        <label for="password">Password *</label>
+        <input type="password" id="password" name="password" placeholder="Create Password (min 6 chars)" minlength="6" required />
+        <div class="error-msg" id="error-password"></div>
+      </div>
+      
+      <div>
+        <label for="confirmPassword">Confirm Password *</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required />
+        <div class="error-msg" id="error-confirmPassword"></div>
+      </div>
+
+      <div class="full-width">
+        <label for="address">Address *</label>
+        <textarea id="address" name="address" placeholder="Enter your full address" required></textarea>
+        <div class="error-msg" id="error-address"></div>
+      </div>
+
+      <div>
+        <label for="state">State *</label>
+        <select id="state" name="state" required>
+          <option value="" disabled selected>Select state</option>
+          <option value="Andhra Pradesh">Andhra Pradesh</option>
+          <option value="Bihar">Bihar</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Karnataka">Karnataka</option>
+          <option value="Maharashtra">Maharashtra</option>
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          <option value="Sikkim">Sikkim</option>
+          <option value="Goa">Goa</option>
+          <option value="Assam">Assam</option>
+          <option value="Punjab">Punjab</option>
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          <option value="West Bengal">West Bengal</option>
+          <option value="Other">Other</option>
+        </select>
+        <div class="error-msg" id="error-state"></div>
+      </div>
+
+      <div>
+        <label for="pincode">Pincode *</label>
+        <input type="text" id="pincode" name="pincode" placeholder="6-digit pincode" pattern="[0-9]{6}" required />
+        <div class="error-msg" id="error-pincode"></div>
+      </div>
+      
+      <div>
+        <label for="fatherName">Father's Name *</label>
+        <input type="text" id="fatherName" name="fatherName" placeholder="Enter father's name" required />
+        <div class="error-msg" id="error-fatherName"></div>
+      </div>
+
+      <div>
+        <label for="motherName">Mother's Name *</label>
+        <input type="text" id="motherName" name="motherName" placeholder="Enter mother's name" required />
+        <div class="error-msg" id="error-motherName"></div>
+      </div>
+
+
+      <button type="submit">Register</button>
+      
+      <p class="login-link">
+          Already registered? <a href="login.html">Login here</a>
+      </p>
+    </form>
+  </div>
+
+  <script>
+    // CRITICAL FIX: Define the API URL for your running backend (Port 4000)
+    const API_BASE_URL = 'http://localhost:4006/api/v1/auth';
+
+    const form = document.getElementById('studentRegForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Clear all error messages
+      document.querySelectorAll('.error-msg').forEach(el => el.textContent = '');
+
+      let isValid = true;
+      const formData = {};
+
+      // Helper function (no changes needed)
+      const checkPattern = (value, pattern) => new RegExp(pattern).test(value);
+
+      // Function to validate (no changes needed)
+      const validateInput = (fieldId, pattern, errorMsg, minLength = 0) => {
+          const input = form[fieldId];
+          const value = input.value.trim();
+          let error = document.getElementById(`error-${fieldId}`);
+          
+          if (!value) {
+              error.textContent = `${errorMsg} is required.`;
+              isValid = false;
+          } else if (minLength > 0 && value.length < minLength) {
+              error.textContent = `${errorMsg} must be at least ${minLength} characters.`;
+              isValid = false;
+          } else if (pattern && !checkPattern(value, pattern)) {
+              error.textContent = `Please enter a valid ${errorMsg.toLowerCase()}.`;
+              isValid = false;
+          }
+          formData[fieldId] = value;
+      };
+
+      // --- 1. VALIDATION (No changes needed) ---
+      validateInput('rollNumber', null, "Roll Number", 5);
+      validateInput('name', /^[a-zA-Z\s]{3,}$/, "Full Name", 3);
+      validateInput('fatherName', /^[a-zA-Z\s]{3,}$/, "Father's Name", 3);
+      validateInput('motherName', /^[a-zA-Z\s]{3,}$/, "Mother's Name", 3);
+      validateInput('email', /\S+@\S+\.\S+/, "Email Address");
+      validateInput('contact', "^[0-9]{10}$", "Contact Number");
+      validateInput('pincode', "^[0-9]{6}$", "Pincode");
+      validateInput('address', null, "Address", 10);
+      
+      ['branch', 'year', 'gender', 'state'].forEach(id => {
+          if (!form[id].value) {
+              document.getElementById(`error-${id}`).textContent = `Please select your ${id}.`;
+              isValid = false;
+          }
+          formData[id] = form[id].value;
+      });
+
+      const dob = form.dob.value;
+      if (!dob) {
+          document.getElementById('error-dob').textContent = "Please select your date of birth.";
+          isValid = false;
+      } else if (new Date(dob) > new Date()) {
+          document.getElementById('error-dob').textContent = "Date of birth cannot be in the future.";
+          isValid = false;
+      }
+      formData.dob = dob;
+
+      const password = form.password.value;
+      const confirmPassword = form.confirmPassword.value;
+      
+      if (password.length < 6) {
+          document.getElementById('error-password').textContent = "Password must be at least 6 characters.";
+          isValid = false;
+      } else if (password !== confirmPassword) {
+          document.getElementById('error-confirmPassword').textContent = "Passwords do not match.";
+          isValid = false;
+      }
+      formData.password = password;
+
+
+      // --- 2. BACKEND SUBMISSION ---
+      if (isValid) {
+          const payload = {
+              roll_number: formData.rollNumber,
+              name: formData.name,
+              email: formData.email,
+              password: formData.password,
+              contact: formData.contact,
+              course: formData.branch,
+          };
+          
+          try {
+              // CRITICAL FIX: Use the absolute URL
+              const response = await fetch(`${API_BASE_URL}/student/register`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(payload),
+              });
+
+              const data = await response.json();
+
+              if (response.ok) {
+                  alert('Registration successful! You can now log in.');
+                  form.reset();
+                  window.location.href = 'login.html'; // Redirect to login
+              } else {
+                  alert(data.message || 'Registration failed. Please try again.');
+              }
+          } catch (error) {
+              console.error('Network Error:', error);
+              // CRITICAL FIX: Update error message to show correct port
+              alert('An error occurred. Could not connect to the server. Is it running on port 4000?');
+          }
+      }
+    });
+  </script>
+
+</body>
+</html>

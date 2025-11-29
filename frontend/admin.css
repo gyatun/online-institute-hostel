@@ -1,0 +1,586 @@
+/* --- Global Reset & Variables --- */
+:root {
+    --primary-color: #004080; /* Dark Blue */
+    --secondary-color: #ffcc00; /* Gold/Yellow Accent */
+    --background-color: #f0f2f5; /* Light Grey Background */
+    --sidebar-color: #2c3e50; /* Dark Sidebar */
+    --text-light: #ecf0f1;
+    --card-bg: #ffffff;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- 1. Header (Top Bar) --- */
+.dashboard-header {
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.dashboard-header .logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#userNameDisplay {
+    font-weight: 600;
+}
+
+#userRoleDisplay {
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+.logout-btn {
+    background: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 0.9rem;
+}
+
+.logout-btn:hover {
+    background: #c82333;
+}
+
+/* --- 2. Main Container & Layout --- */
+.main-container {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* --- 3. Sidebar Navigation --- */
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-color);
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    color: var(--text-light);
+    height: 100vh; 
+     /* <-- THIS IS THE FIX */
+    position: sticky;
+    top: 66px; /* Adjust based on header height */
+    z-index: 5;
+}
+
+.sidebar nav ul {
+    list-style: none;
+}
+
+.sidebar nav ul li a {
+    display: block;
+    padding: 15px 30px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.sidebar nav ul li i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+/* Menu item hover and active state */
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+    background-color: #34495e;
+    color: var(--secondary-color);
+    border-left: 5px solid var(--secondary-color);
+    padding-left: 25px; /* Adjust padding due to border */
+}
+
+/* Hide elements based on role access (handled by JS, but visually hidden) */
+li[data-access=""] {
+    display: none;
+}
+
+/* --- 4. Dynamic Content Area --- */
+.dashboard-content {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.welcome-card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.welcome-card h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* --- Quick Stats Summary (Example Styling) --- */
+#statsSummary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.stat-box {
+    background: var(--background-color);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.stat-box h4 {
+    color: var(--sidebar-color);
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.stat-box .value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 900px) {
+    .main-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        box-shadow: none;
+        padding-bottom: 0;
+    }
+    .sidebar nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .sidebar nav ul li {
+        width: 45%; /* Two columns on mobile */
+    }
+    .sidebar nav ul li a {
+        border-left: none !important;
+        text-align: center;
+        padding: 10px 15px;
+    }
+    .sidebar nav ul li a:hover {
+        border-bottom: 3px solid var(--secondary-color);
+        background-color: #34495e;
+    }
+    .dashboard-header {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .dashboard-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .sidebar nav ul li {
+        width: 100%; /* Single column menu on very small screens */
+    }
+    .user-info {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+
+/* ================================================= */
+/* 6. PROFESSIONAL DASHBOARD TABLE STYLES
+/* ================================================= */
+
+.portal-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+.portal-section p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* --- Main Data Table --- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse; /* Removes double borders */
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures border-radius is respected */
+}
+
+.data-table th, 
+.data-table td {
+    padding: 16px 20px; /* Generous padding */
+    text-align: left;
+    vertical-align: middle; /* Centers content vertically */
+    border-bottom: 1px solid #eaeaea; /* Clean row separation */
+}
+
+/* Table Header */
+.data-table th {
+    background-color: #f9fafb; /* Very light grey header */
+    color: var(--sidebar-color);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Table Body */
+.data-table tbody tr {
+    background-color: var(--card-bg);
+    transition: background-color 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f5f8fc; /* Light blue hover */
+}
+
+/* --- Multi-line Cell Styling --- */
+/* (For Student and Title/Type columns) */
+.data-table td strong {
+    display: block;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+.data-table td small {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* --- Status Tag Improvements --- */
+.status-tag {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+}
+
+.status-new {
+    background-color: #e0f3ff;
+    border-color: #b3e0ff;
+    color: #0056b3;
+}
+.status-resolved, .status-completed, .status-closed {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+/* Use 'in-review' (all lowercase) for the class name */
+.status-in-review, .status-in-progress, .status-assigned {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+    color: #856404;
+}
+
+/* --- Action Dropdown Styling --- */
+.action-dropdown {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.action-dropdown:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 64, 128, 0.1);
+}
+
+
+/* ================================================= */
+/* 5. Portal Forms & Module Styling ---hostel and room allotment*/
+/* ================================================= */
+.portal-section {
+    background: var(--card-bg);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.portal-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+.portal-section p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* --- Module Controls (Buttons) --- */
+.module-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+.action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 0.9rem;
+}
+.action-btn i { margin-right: 8px; }
+.primary-btn { background-color: var(--primary-color); color: white; }
+.primary-btn:hover { background-color: #003366; }
+.success-btn { background-color: var(--success-color); color: white; }
+.success-btn:hover { background-color: #218838; }
+
+/* --- Forms (for Add Hostel/Room) --- */
+.form-card {
+    background: #fdfdfd;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    margin-bottom: 30px;
+}
+.form-card h3 {
+    color: var(--sidebar-color);
+    margin-bottom: 20px;
+}
+.data-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.data-form .form-group {
+    flex: 1;
+    min-width: 200px;
+}
+.data-form label {
+    display: block;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+.data-form input[type="text"],
+.data-form input[type="number"],
+.data-form select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.data-form input:focus, .data-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 64, 128, 0.3);
+}
+.btn-submit {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 10px;
+}
+.message-area { font-weight: 600; margin-top: 15px; }
+
+/* --- Data Table Styling --- */
+.data-view-container {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+.data-view-container h3 {
+    color: var(--sidebar-color);
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    font-size: 1.1rem;
+}
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.data-table th, .data-table td {
+    padding: 16px 15px;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid #f0f0f0;
+}
+.data-table th {
+    background-color: #fcfcfc;
+    color: #555;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.data-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+.data-table tbody tr:hover {
+    background-color: #f8fbff;
+}
+.data-table td strong {
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+.small-btn {
+    padding: 5px 12px;
+    font-size: 0.85rem;
+}
+
+/* delete-bar */
+
+.action-btn.danger-btn {
+    background-color: var(--danger-color);
+    color: white;
+}
+.action-btn.danger-btn:hover {
+    background-color: #c82333;
+}
+.data-table td .action-btn {
+    margin-right: 5px; /* Add spacing between buttons */
+}
+
+
+/* ================================================= */
+/* 7. NOTICE MODULE STYLES */
+/* ================================================= */
+
+/* --- Makes the 'Content' textarea full width --- */
+.data-form .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* --- Give the main content box more space --- */
+.data-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* --- Style for the 'Cancel Edit' button --- */
+.action-btn.secondary-btn {
+    background-color: #6c757d; /* Bootstrap 'secondary' gray */
+    color: white;
+    margin-left: 10px;
+}
+.action-btn.secondary-btn:hover {
+    background-color: #5a6268;
+}
+
+/* --- Style for the table action buttons (Edit/Delete) --- */
+.data-table .action-btn.small-btn {
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    margin-right: 5px;
+}
+
+.action-btn.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+.action-btn.primary-btn:hover {
+    background-color: #003366; /* Darker blue */
+}
+
+.action-btn.danger-btn {
+    background-color: var(--danger-color);
+    color: white;
+}
+.action-btn.danger-btn:hover {
+    background-color: #c82333; /* Darker red */
+}
+
+/* --- Style for the form message area --- */
+.message-area {
+    font-weight: 600;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    display: none; /* Will be shown by JS */
+}
+/* These classes will be added by the JS */
+.message-area.success {
+    background-color: #d4edda;
+    color: #155724;
+    display: block;
+}
+.message-area.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    display: block;
+}
+
+/* --- Add to portal-styles.css --- */
+.btn-submit.danger-btn {
+    background-color: var(--danger-color);
+}
+.btn-submit.danger-btn:hover {
+    background-color: #c82333;
+}

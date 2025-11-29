@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal | Hostel Management System</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- CRITICAL: Corrected CSS Link -->
+    <link rel="stylesheet" href="student.css"> 
+    <!-- <script src="auth.js"></script> -->
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+        <div class="logo">Student Portal</div>
+        <div class="user-info">
+            <span id="userNameDisplay">Welcome, Student</span>
+            <span id="userRollDisplay" class="role-tag"></span>
+            <button id="logoutBtn" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </header>
+
+    <div class="main-container">
+
+        <aside class="sidebar" id="sidebarNav">
+            <nav>
+                <ul>
+                    <li><a href="#" data-module="dashboard" class="active"><i class="fas fa-home"></i> My Dashboard</a>
+                    </li>
+                    <li><a href="#" data-module="profile"><i class="fas fa-user-circle"></i> Profile & Room Details</a>
+                    </li>
+                    <li><a href="#" data-module="fees-dues"><i class="fas fa-wallet"></i> Fees & Dues</a></li>
+                    <li><a href="#" data-module="submit-complaint"><i class="fas fa-exclamation-triangle"></i> Submit
+                            Complaint</a></li>
+                    <li><a href="#" data-module="complaint-history"><i class="fas fa-history"></i> Complaint History</a>
+                    </li>
+                    <li><a href="#" data-module="notices"><i class="fas fa-bullhorn"></i> Hostel Notices</a></li>
+                    <li><a href="#" data-module="attendance"><i class="fas fa-calendar-check"></i> My Attendance</a>
+                    </li>
+                    <li><a href="#" data-module="visitor-history"><i class="fas fa-users"></i> My Visitor History</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="dashboard-content" id="mainContent">
+            <!-- Content will be loaded here by student.js -->
+        </main>
+        
+        <!-- The login box and form are now REMOVED -->
+    </div>
+
+    <!-- CRITICAL: Only include the script that runs the student portal -->
+    <!-- Assuming student.js is in assets/js/ folder relative to client/ -->
+    <script src="student.js"></script> 
+</body>
+
+</html>
